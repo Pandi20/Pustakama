@@ -72,11 +72,11 @@ class User(UserMixin, db.Model):
 
     def borrow_book(self, book):
         if self.logs.filter(Log.returned == 0, Log.return_timestamp < datetime.now()).count() > 0:
-            return False, u"无法借阅,你有超期的图书未归还"
+            return False, u"Tidak dapat meminjam, Anda memiliki buku yang sudah lewat jatuh tempo dan belum dikembalikan"
         if self.borrowing(book):
-            return False, u'貌似你已经借阅了这本书!!'
+            return False, u'Sepertinya Anda telah meminjam buku ini!!'
         if not book.can_borrow():
-            return False, u'这本书太火了,我们已经没有馆藏了,请等待别人归还以后再来借阅'
+            return False, u'Buku ini sangat populer sehingga kami tidak lagi memiliki koleksinya. Harap menunggu orang lain mengembalikannya sebelum meminjamnya.'
 
         db.session.add(Log(self, book))
         return True, u'你成功GET到了一本 %s' % book.title

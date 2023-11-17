@@ -15,8 +15,8 @@ user2 = User(name=u'test', email='test@test.com', password='123456')
 user3 = User(name=u'小明', email='xiaoming@163.com', password='123456')
 user4 = User(name=u'李华', email='lihua@yahoo.com', password='123456')
 
-book1 = Book(title=u"Flask Web 开发", subtitle=u"基于Python的Web应用开发框架", author=u"Miguel Grinberg", isbn='9787115373991',
-             tags_string=u"计算机,程序设计,Web开发", image='http://img3.douban.com/lpic/s27906700.jpg',
+book1 = Book(title=u"Flask Web", subtitle=u"PythonWeb", author=u"Miguel Grinberg", isbn='9787115373991',
+             tags_string=u",Web", image='http://img3.douban.com/lpic/s27906700.jpg',
              summary=u"""
 # 本书不仅适合初级Web开发人员学习阅读，更是Python程序员用来学习高级Web开发技术的优秀参考书。
 
