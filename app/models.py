@@ -79,15 +79,15 @@ class User(UserMixin, db.Model):
             return False, u'Buku ini sangat populer sehingga kami tidak lagi memiliki koleksinya. Harap menunggu orang lain mengembalikannya sebelum meminjamnya.'
 
         db.session.add(Log(self, book))
-        return True, u'你成功GET到了一本 %s' % book.title
+        return True, u'Anda berhasil mendapatkan salinannya %s' % book.title
 
     def return_book(self, log):
         if log.returned == 1 or log.user_id != self.id:
-            return False, u'没有找到这条记录'
+            return False, u'Catatan ini tidak ditemukan'
         log.returned = 1
         log.return_timestamp = datetime.now()
         db.session.add(log)
-        return True, u'你归还了一本 %s' % log.book.title
+        return True, u'Anda mengembalikan satu %s' % log.book.title
 
     def avatar_url(self, _external=False):
         if self.avatar:

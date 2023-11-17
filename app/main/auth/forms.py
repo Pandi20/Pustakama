@@ -9,7 +9,7 @@ from wtforms.validators import Email, Length, DataRequired, EqualTo
 
 class LoginForm(FlaskForm):
     email = StringField('Email',
-                        validators=[DataRequired(message=u"该项忘了填写了!"), Length(1, 64), Email(message=u"你确定这是 Email ?")])
+                        validators=[DataRequired(message=u"Lupa mengisi item ini!"), Length(1, 64), Email(message=u"你确定这是 Email ?")])
     password = PasswordField(u'密码', validators=[DataRequired(message=u"该项忘了填写了!"), Length(6, 32)])
     remember_me = BooleanField(u"保持我的登入状态", default=True)
     submit = SubmitField(u'登入')

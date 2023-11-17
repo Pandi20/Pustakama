@@ -5,9 +5,9 @@
 {%- endblock metas -%}
 {%- block title -%}
     {%- if title -%}
-        {{ title }} - Book Library
+        {{ title }} - Pustakama
     {%- else -%}
-        Book Library
+        Pustakama
     {%- endif -%}
 {%- endblock -%}
 {%- block styles -%}
@@ -56,9 +56,9 @@
                             class="active"{%- endif -%} >
                             <a href="{{ url_for('user.detail',user_id=current_user.id) }}">{{ current_user.name }}</a>
                         </li>
-                        <li><a href="{{ url_for('auth.logout') }}">登出</a></li>
+                        <li><a href="{{ url_for('auth.logout') }}">Keluar</a></li>
                     {%- else -%}
-                        <li><a href="{{ url_for('auth.login') }}">登入</a></li>
+                        <li><a href="{{ url_for('auth.login') }}">Gabung</a></li>
                     {%- endif -%}
                 </ul>
             </div><!-- /.navbar-collapse -->
