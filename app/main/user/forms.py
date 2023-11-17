@@ -16,8 +16,7 @@ class EditProfileForm(FlaskForm):
 
 
 class AvatarEditForm(FlaskForm):
-    avatar_url = StringField('', validators=[Length(1, 100, message=u"
-Panjangnya dibatasi hingga 100 karakter"), URL(message=u"Silakan isi URL dengan benar")])
+    avatar_url = StringField('', validators=[Length(1, 100, message=u"Batasi hingga 100 karakter"), URL(message=u"Silakan isi URL dengan benar")])
     submit = SubmitField(u"Simpan")
 
 
