@@ -7,7 +7,7 @@
                 <div class="col-md-3 animated bounceIn">
                     {%- if current_user.id == user.id or current_user.can(Permission.UPDATE_OTHERS_INFORMATION) -%}
                         <a href="{{ url_for('user.avatar',user_id=user.id) }}" data-toggle="tooltip"
-                           data-placement="bottom" title="点击修改头像">
+                           data-placement="bottom" title="Klik untuk memperbarui foto profil">
                             <div class="avatar avatar-large"
                                  style="background-image: url({{ user.avatar_url() }})"></div>
                         </a>
@@ -27,14 +27,14 @@
 
                 <p>Email: {{ user.email }}</p>
                 {% if user.major %}
-                    <p>主修专业: {{ user.major }}</p>
+                    <p>Jurusan: {{ user.major }}</p>
                 {% endif %}
-                <p>加入日期: {{ user.member_since.strftime('%d %B %Y - %H:%M:%S') }}</p>
+                <p>Tanggal bergabung: {{ user.member_since.strftime('%d %B %Y - %H:%M:%S') }}</p>
                 {% if current_user.id==user.id or current_user.can(Permission.UPDATE_OTHERS_INFORMATION) %}
-                    <a class="btn btn-info" href="{{ url_for('user.edit',user_id=user.id) }}">编辑资料</a>
+                    <a class="btn btn-info" href="{{ url_for('user.edit',user_id=user.id) }}">Mengubah informasi</a>
                 {% endif %}
                 {% if current_user.id==user.id %}
-                    <a class="btn btn-danger" href="{{ url_for('auth.change_password',user_id=user.id) }}">修改密码</a>
+                    <a class="btn btn-danger" href="{{ url_for('auth.change_password',user_id=user.id) }}">Ganti kata sandi</a>
                 {% endif %}
 
             </div>

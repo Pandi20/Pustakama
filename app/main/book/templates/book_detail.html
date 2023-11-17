@@ -12,27 +12,27 @@
         </h1>
         <div class="primary-info">
             {%- if book.image -%}
-                <img class="img-responsive" src="{{ book.image }}" alt="{{ book.title~' 封面' }}">
+                <img class="img-responsive" src="{{ book.image }}" alt="{{ book.title~' Menutupi' }}">
             {%- endif -%}
             <ul class="list-group">
                 <li class="list-group-item">ISBN: {{ book.isbn }}</li>
                 {%- if book.origin_title -%}
-                    <li class="list-group-item">原作名: {{ book.origin_title }}</li>
+                    <li class="list-group-item">Nama buku: {{ book.origin_title }}</li>
                 {%- endif -%}
                 {%- if book.author -%}
-                    <li class="list-group-item">作者: {{ book.author }}</li>
+                    <li class="list-group-item">Penulis: {{ book.author }}</li>
                 {%- endif -%}
                 {%- if book.translator -%}
-                    <li class="list-group-item">译者: {{ book.translator }}</li>
+                    <li class="list-group-item">Penerjemah: {{ book.translator }}</li>
                 {%- endif -%}
                 {%- if book.publisher -%}
-                    <li class="list-group-item">出版社: {{ book.publisher }}</li>
+                    <li class="list-group-item">Penerbit: {{ book.publisher }}</li>
                 {%- endif -%}
                 {%- if book.pubdate -%}
-                    <li class="list-group-item">出版日期: {{ book.pubdate }}</li>
+                    <li class="list-group-item">Tanggal terbit: {{ book.pubdate }}</li>
                 {%- endif -%}
                 {%- if book.tags.count() -%}
-                    <li class="list-group-item">标签:
+                    <li class="list-group-item">Label:
                         {% for tag in book.tags %}
                             <a class="tag line-wrap" href="{{ url_for('.tags',search=tag.name) }}">{{ tag.name }} <span
                                     class="badge">{{ tag.books.count() }}</span></a>
@@ -40,13 +40,13 @@
                     </li>
                 {%- endif -%}
                 {%- if book.pages -%}
-                    <li class="list-group-item">页数: {{ book.pages }}</li>
+                    <li class="list-group-item">Jumlah halaman: {{ book.pages }}</li>
                 {%- endif -%}
                 {%- if book.price -%}
-                    <li class="list-group-item">定价: {{ book.price }}</li>
+                    <li class="list-group-item">Harga: {{ book.price }}</li>
                 {%- endif -%}
                 {%- if book.binding -%}
-                    <li class="list-group-item">装帧: {{ book.binding }}</li>
+                    <li class="list-group-item">Mengikat: {{ book.binding }}</li>
                 {%- endif -%}
                 <li class="list-group-item">馆藏 / 可借: {{ book.numbers }} / {{ book.can_borrow_number() }}</li>
             </ul>
@@ -158,7 +158,7 @@
                                 <div class="col-md-4 col-md-offset-4">
                                     <button type="button" class="btn btn-primary btn-block" data-toggle="modal"
                                             data-target="#myModal">
-                                        我来评价这本书
+                                        Izinkan saya mengevaluasi buku ini
                                     </button>
                                 </div>
                             </div>
@@ -280,7 +280,7 @@
                         </tbody>
                     </table>
                 {%- else -%}
-                    <div class="container-fluid">暂无信息</div>
+                    <div class="container-fluid">Tidak ada informasi</div>
                 {%- endif -%}
 
             {%- endif -%}

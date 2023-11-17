@@ -17,7 +17,7 @@ def login():
             flash(u'berhasil masuk!  Selamat datang %s!' % the_user.name, 'success')
             return redirect(request.args.get('next') or url_for('main.index'))
         flash(u'Nama pengguna tidak valid atau kata sandi salah!', 'danger')
-    return render_template("login.html", form=login_form, title=u"Gabung")
+    return render_template("login.html", form=login_form, title=u"Masuk")
 
 
 @auth.route('/logout/')

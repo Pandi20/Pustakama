@@ -29,7 +29,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ url_for('main.index') }}">Book Library</a>
+                <a class="navbar-brand" href="{{ url_for('main.index') }}">Pustakama</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -58,7 +58,7 @@
                         </li>
                         <li><a href="{{ url_for('auth.logout') }}">Keluar</a></li>
                     {%- else -%}
-                        <li><a href="{{ url_for('auth.login') }}">Gabung</a></li>
+                        <li><a href="{{ url_for('auth.login') }}">Masuk</a></li>
                     {%- endif -%}
                 </ul>
             </div><!-- /.navbar-collapse -->
