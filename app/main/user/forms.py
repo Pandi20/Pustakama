@@ -8,15 +8,15 @@ from app import avatars
 
 
 class EditProfileForm(FlaskForm):
-    name = StringField(u'Nama Lengkap', validators=[DataRequired(message=u"Lupa mengisi item ini!"), Length(1, 64, message=u"Panjangnya 1 hingga 64 karakter")])
-    major = StringField(u'主修专业', validators=[Length(0, 128, message=u"长度为0到128个字符")])
-    headline = StringField(u'一句话介绍自己', validators=[Length(0, 32, message=u"长度为32个字符以内")])
-    about_me = PageDownField(u"个人简介")
+    name = StringField(u'Nama', validators=[DataRequired(message=u"Lupa mengisi item ini!"), Length(1, 64, message=u"Panjangnya hingga 64 karakter")])
+    major = StringField(u'Jurusan', validators=[Length(0, 128, message=u"Panjangnya hingga 128 karakter")])
+    headline = StringField(u'judul', validators=[Length(0, 32, message=u"Panjangnya hingga 32 karakter")])
+    about_me = PageDownField(u"Tentang Saya")
     submit = SubmitField(u"Simpan perubahan")
 
 
 class AvatarEditForm(FlaskForm):
-    avatar_url = StringField('', validators=[Length(1, 100, message=u"Batasi hingga 100 karakter"), URL(message=u"Silakan isi URL dengan benar")])
+    avatar_url = StringField('', validators=[Length(1, 100, message=u"Batasi hingga 100 karakter"), URL(message=u"Silakan isi tautan dengan benar")])
     submit = SubmitField(u"Simpan")
 
 

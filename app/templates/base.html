@@ -39,7 +39,7 @@
                             href="{{ url_for('book.index') }}">Daftar Buku</a></li>
                     {%- if current_user.is_authenticated -%}
                         <li {%- if request.path == url_for('book.tags') %} class="active"{%- endif -%} ><a
-                                href="{{ url_for('book.tags') }}"><Label></Label></a></li>
+                                href="{{ url_for('book.tags') }}"><Label>Label</Label></a></li>
                         {%- if current_user.can(Permission.ADD_BOOK) -%}
                             <li {%- if request.path == url_for('book.add') %} class="active"{%- endif -%} ><a
                                     href="{{ url_for('book.add') }}">Tambahkan buku baru</a></li>

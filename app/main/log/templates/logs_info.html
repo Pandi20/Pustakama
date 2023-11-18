@@ -5,10 +5,10 @@
     <ul class="nav nav-tabs" role="tablist">
         {% if request.args.get('show',0)!='1' %}
             <li role="presentation" class="active"><a href="#" role="tab">Catatan pinjaman saat ini</a></li>
-            <li role="presentation"><a href="{{ url_for('log.index',show=1) }}" role="tab">Catatan peminjaman sejarah</a></li>
+            <li role="presentation"><a href="{{ url_for('log.index',show=1) }}" role="tab">Catatan peminjaman yang lalu</a></li>
         {% else %}
             <li role="presentation"><a href="{{ url_for('log.index',show=0) }}" role="tab">Catatan pinjaman saat ini</a></li>
-            <li role="presentation" class="active"><a href="#" role="tab">Catatan peminjaman sejarah</a></li>
+            <li role="presentation" class="active"><a href="#" role="tab">Catatan peminjaman yang lalu</a></li>
         {% endif %}
     </ul>
     <!-- Tab panes -->
@@ -21,7 +21,7 @@
                     <th>Email</th>
                     <th>Meminjam buku</th>
                     <th>Tanggal peminjaman</th>
-                    <th>Tenggat waktu</th>
+                    <th>Volume peminjaman</th>
                     {%- if current_user.is_authenticated -%}
                         <th>Beroperasi</th>
                     {%- endif -%}
@@ -43,10 +43,10 @@
                                 {% if current_user.id == log.user.id %}
                                     <a class="btn btn-primary visible-xs-block"
                                        href="{{ url_for('log.book_return',log_id=log.id,next=request.path) }}">
-                                        归还
+                                        Kembali
                                     </a>
                                 {% else %}
-                                    <button class="btn btn-warning visible-xs-block btn-block" disabled>待归还</button>
+                                    <button class="btn btn-warning visible-xs-block btn-block" disabled>Untuk dikembalikan</button>
                                 {% endif %}
                             {%- endif -%}
                         </td>
@@ -60,10 +60,10 @@
                             {% if current_user.id == log.user.id %}
                                 <a class="btn btn-primary btn-block"
                                    href="{{ url_for('log.book_return',log_id=log.id,next=request.path) }}">
-                                    归还
+                                    Kembali
                                 </a>
                             {% else %}
-                                <button class="btn btn-warning btn-block" disabled>待归还</button>
+                                <button class="btn btn-warning btn-block" disabled>Untuk dikembalikan</button>
                             {% endif %}
                         {%- endif -%}
                         </td>
@@ -77,11 +77,11 @@
             <table class="table table-striped table-hover">
                 <thead class="hidden-xs">
                 <tr>
-                    <th>用户名</th>
-                    <th>用户邮箱</th>
-                    <th>借阅书籍</th>
-                    <th>借阅日期</th>
-                    <th>归还日期</th>
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th>Meminjam buku</th>
+                    <th>Tanggal peminjaman</th>
+                    <th>Tanggal pengembalian</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -90,10 +90,10 @@
                         <td><a href="{{ url_for('user.detail' ,user_id=log.user.id) }}">{{ log.user.name }}</a>
                             <a class="visible-xs-block"
                                href="{{ url_for('book.detail',book_id=log.book.id) }}">{{ log.book.title }}</a>
-                            <p class="visible-xs-block">借阅日期: <span
+                            <p class="visible-xs-block">Tanggal peminjaman: <span
                                     class="line-wrap">{{ log.borrow_timestamp.strftime('%d %B %Y - %H:%M:%S') }}</span>
                             </p>
-                            <p class="visible-xs-block">归还日期: <span
+                            <p class="visible-xs-block">Tanggal pengembalian <span
                                     class="line-wrap">{{ log.return_timestamp.strftime('%d %B %Y - %H:%M:%S') }}</span>
                             </p>
                         </td>

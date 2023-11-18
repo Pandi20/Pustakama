@@ -43,7 +43,7 @@
 
         {% if user.about_me_html %}
             <h2>
-                <small>个人简介</small>
+                <small>Profil pribadi</small>
             </h2>
             {{ user.about_me_html|safe }}
         {% elif user.about_me %}
@@ -56,15 +56,15 @@
     <div class="well well-lg" id="log">
         <ul class="nav nav-tabs" role="tablist">
             {% if request.args.get('show',0)!='1' %}
-                <li role="presentation" class="active"><a href="#log" role="tab">当前借阅记录</a></li>
+                <li role="presentation" class="active"><a href="#log" role="tab">Catatan peminjaman saat ini</a></li>
                 <li role="presentation"><a href="{{ url_for('user.detail',user_id=user.id,show=1,_anchor='log') }}"
-                                           role="tab">历史借阅记录</a>
+                                           role="tab">Catatan peminjaman yang lalu</a>
                 </li>
             {% else %}
                 <li role="presentation"><a href="{{ url_for('user.detail',user_id=user.id,show=0,_anchor='log') }}"
-                                           role="tab">当前借阅记录</a>
+                                           role="tab">Catatan peminjaman saat ini</a>
                 </li>
-                <li role="presentation" class="active"><a href="#log" role="tab">历史借阅记录</a></li>
+                <li role="presentation" class="active"><a href="#log" role="tab">Catatan peminjaman yang lalu</a></li>
             {% endif %}
         </ul>
         <!-- Tab panes -->
@@ -73,11 +73,11 @@
                 <table class="table table-striped table-hover">
                     <thead>
                     <tr>
-                        <th>借阅书籍</th>
-                        <th class="hidden-xs">借阅日期</th>
-                        <th class="hidden-xs">应还日期</th>
+                        <th>Meminjam buku</th>
+                        <th class="hidden-xs">Tanggal Peminjaman</th>
+                        <th class="hidden-xs">Tenggat waktu</th>
                         {%- if current_user.is_authenticated and current_user.id==user.id -%}
-                            <th>操作</th>
+                            <th>beroperasi</th>
                         {%- endif -%}
                     </tr>
                     </thead>
@@ -85,10 +85,10 @@
                     {% for log in logs %}
                         <tr class="animated fadeIn delay-{{ loop.index0 }}">
                             <td><a href="{{ url_for('book.detail',book_id=log.book.id) }}">{{ log.book.title }}</a>
-                                <p class="visible-xs-block">借阅日期:<span
+                                <p class="visible-xs-block">Tanggal peminjaman:<span
                                         class="line-wrap">{{ log.borrow_timestamp.strftime('%d %B %Y - %H:%M:%S') }}</span>
                                 </p>
-                                <p class="visible-xs-block">应还日期:<span
+                                <p class="visible-xs-block">Tanggal pengembalian:<span
                                         class="line-wrap">{{ log.return_timestamp.strftime('%d %B %Y - %H:%M:%S') }}</span>
                                 </p>
                             </td>
@@ -97,7 +97,7 @@
                             {%- if current_user.is_authenticated and current_user.id==user.id -%}
                                 <td><a class="btn btn-primary"
                                        href="{{ url_for('log.book_return',log_id=log.id,next=request.path) }}">
-                                    归还</a></td>
+                                    Kembali</a></td>
                             {%- endif -%}
                         </tr>
                     {% endfor %}
@@ -107,9 +107,9 @@
                 <table class="table table-striped table-hover">
                     <thead>
                     <tr>
-                        <th>历史借阅</th>
-                        <th class="hidden-xs">借阅日期</th>
-                        <th class="hidden-xs">应还日期</th>
+                        <th>Peminjaman yang lalu</th>
+                        <th class="hidden-xs">Tanggal peminjaman</th>
+                        <th class="hidden-xs">Tanggal pengembalian/th>
                     </tr>
                     </thead>
                     <tbody>
@@ -117,11 +117,11 @@
                         <tr class="animated fadeIn delay-{{ loop.index0 }}">
                             <td><a href="{{ url_for('book.detail',book_id=log.book.id) }}">{{ log.book.title }}</a>
                                 <p class="visible-xs-block">
-                                    借阅日期:<span
+                                    Tanggal peminjaman:<span
                                         class="line-wrap">{{ log.borrow_timestamp.strftime('%d %B %Y - %H:%M:%S') }}</span>
                                 </p>
                                 <p class="visible-xs-block">
-                                    归还日期:<span
+                                    Tanggal pengembalian:<span
                                         class="line-wrap">{{ log.return_timestamp.strftime('%d %B %Y - %H:%M:%S') }}</span>
                                 </p>
                             </td>
