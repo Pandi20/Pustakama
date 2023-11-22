@@ -76,10 +76,10 @@ class User(UserMixin, db.Model):
         if self.borrowing(book):
             return False, u'Sepertinya Anda telah meminjam buku ini!!'
         if not book.can_borrow():
-            return False, u'Buku ini sangat populer sehingga kami tidak lagi memiliki koleksinya. Harap menunggu orang lain mengembalikannya sebelum meminjamnya.'
+            return False, u'Buku ini sangat populer sehingga kami tidak lagi memiliki koleksinya. Harap menunggu anggota lain mengembalikannya.'
 
         db.session.add(Log(self, book))
-        return True, u'Anda berhasil mendapatkan salinannya %s' % book.title
+        return True, u'Anda berhasil meminjam buku %s' % book.title
 
     def return_book(self, log):
         if log.returned == 1 or log.user_id != self.id:
@@ -87,7 +87,7 @@ class User(UserMixin, db.Model):
         log.returned = 1
         log.return_timestamp = datetime.now()
         db.session.add(log)
-        return True, u'Anda mengembalikan satu %s' % log.book.title
+        return True, u'Anda mengembalikan buku %s' % log.book.title
 
     def avatar_url(self, _external=False):
         if self.avatar:
@@ -260,7 +260,7 @@ class Log(db.Model):
         self.user = user
         self.book = book
         self.borrow_timestamp = datetime.now()
-        self.return_timestamp = datetime.now() + timedelta(days=30)
+        self.return_timestamp = datetime.now() + timedelta(days=7)
         self.returned = 0
 
     def __repr__(self):

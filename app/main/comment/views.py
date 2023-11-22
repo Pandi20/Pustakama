@@ -21,7 +21,7 @@ def add(book_id):
         the_comment = Comment(user=current_user, book=the_book, comment=form.comment.data)
         db.session.add(the_comment)
         db.session.commit()
-        flash(u'Resensi buku berhasil diterbitkan', 'success')
+        flash(u'Resensi buku berhasil diposting', 'success')
     return redirect(request.args.get('next') or url_for('book.detail', book_id=book_id))
 
 

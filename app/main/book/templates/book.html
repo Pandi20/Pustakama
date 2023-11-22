@@ -26,7 +26,7 @@
             <th class="hidden-xs">Koleksi / Tersisa</th>
             <th class="hidden-xs">Volume Pinjaman</th>
             {%- if current_user.is_authenticated -%}
-                <th>Beroperasi</th>
+                <th>Aktivitas</th>
             {%- endif -%}
         </tr>
         </thead>
@@ -47,22 +47,22 @@
                         {% with borrowing_log=current_user.borrowing(book) %}
                             {%- if borrowing_log -%}
                                 <a class="btn btn-primary"
-                                   href="{{ url_for('log.book_return',log_id=borrowing_log.id,next=request.full_path) }}">Kembali</a>
+                                   href="{{ url_for('log.book_return',log_id=borrowing_log.id,next=request.full_path) }}">Kembalikan</a>
                             {%- else -%}
                                 <a class="btn btn-success"
                                    href="{{ url_for('log.book_borrow',book_id=book.id,next=request.full_path) }}"
-                                        {%- if not book.can_borrow() %} disabled="disabled"{%- endif -%}>Meminjam</a>
+                                        {%- if not book.can_borrow() %} disabled="disabled"{%- endif -%}>Pinjam</a>
                             {%- endif -%}
                         {% endwith %}
                         {% if book.hidden %}
                             {%- if current_user.is_administrator() -%}
                                 <a type="button" class="btn btn-info"
-                                   href="{{ url_for('book.put_back',book_id=book.id,next=request.full_path) }}">Memulihkan Buku</a>
+                                   href="{{ url_for('book.put_back',book_id=book.id,next=request.full_path) }}">Pulihkan</a>
                             {%- endif -%}
                         {% else %}
                             {%- if current_user.can(Permission.DELETE_BOOK) -%}
                                 <a type="button" class="btn btn-danger"
-                                   href="{{ url_for('book.delete',book_id=book.id,next=request.full_path) }}">Menghapus Buku</a>
+                                   href="{{ url_for('book.delete',book_id=book.id,next=request.full_path) }}">Hapus</a>
                             {%- endif -%}
                         {%- endif -%}
                     </td>

@@ -31,8 +31,7 @@ def index():
 
     pagination = the_books.paginate(page, per_page=8)
     result_books = pagination.items
-    return render_template("book.html", books=result_books, pagination=pagination, search_form=search_form,
-                           title=u"Muat informasi buku dari Douban")
+    return render_template("book.html", books=result_books, pagination=pagination, search_form=search_form, title=u"")
 
 
 @book.route('/<book_id>/')

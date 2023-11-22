@@ -46,7 +46,7 @@
                     <li class="list-group-item">Harga: {{ book.price }}</li>
                 {%- endif -%}
                 {%- if book.binding -%}
-                    <li class="list-group-item">Mengikat: {{ book.binding }}</li>
+                    <li class="list-group-item">Jenis jilid: {{ book.binding }}</li>
                 {%- endif -%}
                 <li class="list-group-item">Koleksi / Tersisa: {{ book.numbers }} / {{ book.can_borrow_number() }}</li>
             </ul>
@@ -102,13 +102,13 @@
                     {%- if log -%}
                         <a class="btn btn-primary"
                            href="{{ url_for('log.book_return',log_id=log.id,next=request.full_path ) }}">
-                            Kembali
+                            kembalikan
                         </a>
                     {%- else -%}
                         <a class="btn btn-success"
                            href="{{ url_for('log.book_borrow',book_id=book.id,next=request.full_path) }}"
                            {%- if not book.can_borrow() -%}disabled="disabled"{%- endif -%}>
-                            Meminjam
+                            Pinjam
                         </a>
                     {%- endif -%}
                 {%- endwith -%}
@@ -121,12 +121,12 @@
             {%- if book.hidden -%}
                 {%- if current_user.is_administrator() -%}
                     <a type="button" class="btn btn-info"
-                       href="{{ url_for('book.put_back',book_id=book.id) }}">Memulihkan buku</a>
+                       href="{{ url_for('book.put_back',book_id=book.id) }}">pulihkan</a>
                 {%- endif -%}
             {%- else -%}
                 {%- if current_user.can(Permission.DELETE_BOOK) -%}
                     <a type="button" class="btn btn-danger"
-                       href="{{ url_for('book.delete',book_id=book.id) }}">Menghapus buku</a>
+                       href="{{ url_for('book.delete',book_id=book.id) }}">Hapus</a>
                 {%- endif -%}
             {%- endif -%}
         </div>
@@ -158,7 +158,7 @@
                                 <div class="col-md-4 col-md-offset-4">
                                     <button type="button" class="btn btn-primary btn-block" data-toggle="modal"
                                             data-target="#myModal">
-                                        Izinkan saya mengevaluasi buku ini
+                                        Berikan ulasan pada buku ini
                                     </button>
                                 </div>
                             </div>
@@ -185,18 +185,18 @@
                                     {%- if comment.create_timestamp==comment.edit_timestamp -%}
                                         <h4>
                                             <small>
-                                                Diposting di: {{ comment.create_timestamp.strftime('%d %B %Y - %H:%M:%S') }}</small>
+                                                Diposting pada: {{ comment.create_timestamp.strftime('%d %B %Y - %H:%M:%S') }}</small>
                                         </h4>
                                     {%- else -%}
                                         <h4>
                                             <small>
-                                                Diedit di: {{ comment.edit_timestamp.strftime('%d %B %Y - %H:%M:%S') }}</small>
+                                                Diedit pada: {{ comment.edit_timestamp.strftime('%d %B %Y - %H:%M:%S') }}</small>
                                         </h4>
                                     {%- endif -%}
 
                                     {%- if comment.user_id == current_user.id or current_user.can(Permission.DELETE_OTHERS_COMMENT) -%}
                                         <a class="pull-right btn btn-danger btn-sm"
-                                           href="{{ url_for('comment.delete',comment_id=comment.id,next=request.url) }}">Menghapus</a>
+                                           href="{{ url_for('comment.delete',comment_id=comment.id,next=request.url) }}">Hapus</a>
                                     {%- endif -%}
                                 </div>
                             </div>
@@ -209,16 +209,16 @@
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                         aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title">{{ current_user.name~' kanan '~book.title~' Resensi buku' }}</h4>
+                                <h4 class="modal-title">{{'Resensi buku '~book.title~' oleh '~current_user.name~}}</h4>
                             </div>
                             <form action="{{ url_for('comment.add',book_id=book.id) }}" method="post" class="form"
                                   role="form">
                                 {{ form.hidden_tag() }}
                                 <div class="modal-body">
-                                    {{ wtf.form_field(form.comment,placeholder="Panjangnya harus dalam 1024 karakter") }}
+                                    {{ wtf.form_field(form.comment,placeholder="Panjangnya maksimal 1024 karakter") }}
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Penutup
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Batal
                                     </button>
                                     {{ wtf.form_field(form.submit,button_map={'submit':'success'}) }}
                             </form>

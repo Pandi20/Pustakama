@@ -16,7 +16,7 @@ user3 = User(name=u'Cantika', email='xiaoming@163.com', password='123456')
 user4 = User(name=u'Putri', email='lihua@yahoo.com', password='123456')
 
 book1 = Book(title=u"Flask Web", subtitle=u"PythonWeb", author=u"Miguel Grinberg", isbn='9787115373991',
-             tags_string=u",Web", image='http://img3.douban.com/lpic/s27906700.jpg',
+             tags_string=u"Web", image='http://img3.douban.com/lpic/s27906700.jpg',
              summary=u"""Kitu we""")
 book2 = Book(title=u"STL", subtitle=u"Standar", author=u"Nakama", isbn='9787560926995',
              tags_string=u"Gurita,Antropologi,C++", image='https://m.media-amazon.com/images/I/71XnOuGlPnL._SY466_.jpg',
@@ -24,10 +24,10 @@ book2 = Book(title=u"STL", subtitle=u"Standar", author=u"Nakama", isbn='97875609
 book3 = Book(title=u"Aku cinta keduanya", subtitle=u"meraih cinta",
              author="Alfred V. Aho / Monica S.Lam / Ravi Sethi / Jeffrey D. Ullman ", isbn="9787111251217",
              tags_string=u"Cinta,berdua", image='http://img3.douban.com/lpic/s3392161.jpg',
-             summary=u"""* apa ya""")
+             summary=u"""apa ya""")
 book4 = Book(title=u"Vandaloriema", author="Randal E.Bryant / David O'Hallaron", isbn="9787111321330",
              tags_string=u"raki,vandelor", image='http://img3.douban.com/lpic/s4510534.jpg',
-             summary=u"""* Yuk makan dulu""")
+             summary=u"""Yuk makan dulu""")
 book5 = Book(title=u"Algoritma dasar", subtitle=u"cara mudah", author=u"Joseph Albahari/ Ben Albahari",
              isbn="9787517010845", tags_string=u"problem,algoritma,C#", image='http://img3.douban.com/lpic/s28152290.jpg',
              summary=u"""cek satu kan""")

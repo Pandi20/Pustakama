@@ -4,10 +4,10 @@
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
         {% if request.args.get('show',0)!='1' %}
-            <li role="presentation" class="active"><a href="#" role="tab">Catatan pinjaman saat ini</a></li>
+            <li role="presentation" class="active"><a href="#" role="tab">Catatan peminjaman saat ini</a></li>
             <li role="presentation"><a href="{{ url_for('log.index',show=1) }}" role="tab">Catatan peminjaman yang lalu</a></li>
         {% else %}
-            <li role="presentation"><a href="{{ url_for('log.index',show=0) }}" role="tab">Catatan pinjaman saat ini</a></li>
+            <li role="presentation"><a href="{{ url_for('log.index',show=0) }}" role="tab">Catatan peminjaman saat ini</a></li>
             <li role="presentation" class="active"><a href="#" role="tab">Catatan peminjaman yang lalu</a></li>
         {% endif %}
     </ul>
@@ -21,9 +21,9 @@
                     <th>Email</th>
                     <th>Meminjam buku</th>
                     <th>Tanggal peminjaman</th>
-                    <th>Volume peminjaman</th>
+                    <th>Tenggat pengembalian</th>
                     {%- if current_user.is_authenticated -%}
-                        <th>Beroperasi</th>
+                        <th>Aktivitas</th>
                     {%- endif -%}
                 </tr>
                 </thead>
@@ -36,14 +36,14 @@
                             <p class="visible-xs-block">Tanggal peminjaman: <span
                                     class="line-wrap">{{ log.borrow_timestamp.strftime('%d %B %Y - %H:%M:%S') }}</span>
                             </p>
-                            <p class="visible-xs-block">Tenggat waktu: <span
+                            <p class="visible-xs-block">Tanggal pengembalian: <span
                                     class="line-wrap">{{ log.return_timestamp.strftime('%d %B %Y - %H:%M:%S') }}</span>
                             </p>
                             {%- if current_user.is_authenticated -%}
                                 {% if current_user.id == log.user.id %}
                                     <a class="btn btn-primary visible-xs-block"
                                        href="{{ url_for('log.book_return',log_id=log.id,next=request.path) }}">
-                                        Kembali
+                                        Kembalikan
                                     </a>
                                 {% else %}
                                     <button class="btn btn-warning visible-xs-block btn-block" disabled>Untuk dikembalikan</button>
@@ -60,7 +60,7 @@
                             {% if current_user.id == log.user.id %}
                                 <a class="btn btn-primary btn-block"
                                    href="{{ url_for('log.book_return',log_id=log.id,next=request.path) }}">
-                                    Kembali
+                                    Kembalikan
                                 </a>
                             {% else %}
                                 <button class="btn btn-warning btn-block" disabled>Untuk dikembalikan</button>
@@ -79,7 +79,7 @@
                 <tr>
                     <th>Nama</th>
                     <th>Email</th>
-                    <th>Meminjam buku</th>
+                    <th>Judul buku</th>
                     <th>Tanggal peminjaman</th>
                     <th>Tanggal pengembalian</th>
                 </tr>
