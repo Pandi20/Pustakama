@@ -121,7 +121,7 @@
             {%- if book.hidden -%}
                 {%- if current_user.is_administrator() -%}
                     <a type="button" class="btn btn-info"
-                       href="{{ url_for('book.put_back',book_id=book.id) }}">pulihkan</a>
+                       href="{{ url_for('book.put_back',book_id=book.id) }}">Pulihkan</a>
                 {%- endif -%}
             {%- else -%}
                 {%- if current_user.can(Permission.DELETE_BOOK) -%}
@@ -171,7 +171,7 @@
                                     <div class="media-left">
                                         <a href="{{ url_for('user.detail',user_id=comment.user.id) }}">
                                             <div class="media-object avatar avatar-small"
-                                                 style="background-image: url({{ comment.user.avatar_url() }})"></div>
+                                                 style="background-image: url({{comment.user.avatar_url() }})"></div>
                                         </a>
                                     </div>
                                 {%- endif -%}
